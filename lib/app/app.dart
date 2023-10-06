@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/core/utils/app_assets.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 
@@ -7,11 +8,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppStrings.appName,
       home: Scaffold(
-        backgroundColor: AppColors.primary,
+        backgroundColor: AppColors.background,
+        body: Center(
+          child: Image.asset(AppAssets.logo),
+        ),
       ),
     );
   }

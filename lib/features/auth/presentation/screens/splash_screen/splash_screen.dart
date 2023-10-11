@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 import 'package:to_do_app/features/auth/presentation/screens/on_boarding_screens/on_boarding_screens.dart';
 
@@ -24,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) =>  OnBoardingScreens()),
+        MaterialPageRoute(builder: (_) => OnBoardingScreens()),
       );
     });
   }
@@ -32,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,11 +38,10 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 24.0),
             Text(
               AppStrings.appName,
-              style: GoogleFonts.lato(
-                fontWeight: FontWeight.bold,
-                fontSize: 40.0,
-                color: AppColors.white,
-              ),
+              style: Theme.of(context)
+                  .textTheme
+                  .displayLarge!
+                  .copyWith(fontSize: 40.0),
             ),
           ],
         ),

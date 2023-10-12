@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/core/database/cache_helper.dart';
+import 'package:to_do_app/core/services/service_locator.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 import 'package:to_do_app/features/auth/presentation/screens/on_boarding_screens/on_boarding_screens.dart';
+import 'package:to_do_app/features/task/presentation/screens/home_screen.dart';
 
 import '../../../../../core/utils/app_assets.dart';
 
@@ -19,10 +22,15 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigate() {
+    bool isVisited =
+        serviceLocator<CacheHelper>().getData(key: AppStrings.onBoardingKey) ??
+            false;
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => OnBoardingScreens()),
+        MaterialPageRoute(
+          builder: (_) => isVisited ? const HomeScreen() : OnBoardingScreens(),
+        ),
       );
     });
   }

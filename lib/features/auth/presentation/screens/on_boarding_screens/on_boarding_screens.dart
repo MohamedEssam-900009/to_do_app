@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:to_do_app/core/database/cache_helper.dart';
+import 'package:to_do_app/core/services/service_locator.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 import 'package:to_do_app/features/auth/data/model/on_boarding_model.dart';
@@ -96,14 +100,23 @@ class OnBoardingScreens extends StatelessWidget {
                               ),
                             )
                           : ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 //Navigate to home screen
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => const HomeScreen(),
-                                  ),
-                                );
+                                await serviceLocator<CacheHelper>().saveData(
+                                  key: AppStrings.onBoardingKey,
+                                  value: true,
+                                )
+                                    .then((value) {
+                                  log('onBoarding Visited');
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => const HomeScreen(),
+                                    ),
+                                  );
+                                }).catchError((e) {
+                                  log(e.toString());
+                                });
                               },
                               style:
                                   Theme.of(context).elevatedButtonTheme.style,

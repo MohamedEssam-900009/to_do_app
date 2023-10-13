@@ -12,10 +12,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  get_it:
-  google_fonts:
-  shared_preferences:
-  smooth_page_indicator:
+  get_it: 
+  google_fonts: 
+  intl: 
+  shared_preferences: 
+  smooth_page_indicator: 
 
 dev_dependencies:
   flutter_lints: ^2.0.0

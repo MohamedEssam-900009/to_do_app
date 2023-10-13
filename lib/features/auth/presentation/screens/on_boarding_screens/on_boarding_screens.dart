@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:to_do_app/core/commans/commans.dart';
+import 'package:to_do_app/core/commons/commons.dart';
 import 'package:to_do_app/core/database/cache_helper.dart';
 import 'package:to_do_app/core/services/service_locator.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
@@ -95,7 +95,7 @@ class OnBoardingScreens extends StatelessWidget {
                                   value: true,
                                 )
                                     .then((value) {
-                                  navigate(
+                                  navigateTo(
                                     context: context,
                                     screen: const HomeScreen(),
                                   );

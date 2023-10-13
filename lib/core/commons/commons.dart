@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void navigate({required BuildContext context, required Widget screen}) {
+void navigateTo({required BuildContext context, required Widget screen}) {
   Navigator.pushReplacement(
     context,
     MaterialPageRoute(

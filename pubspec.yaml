@@ -9,6 +9,7 @@ environment:
   sdk: ">=3.0.6 <4.0.0"
 
 dependencies:
+  date_picker_timeline:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter

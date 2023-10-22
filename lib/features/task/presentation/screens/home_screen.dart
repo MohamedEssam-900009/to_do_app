@@ -1,6 +1,7 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_app/core/utils/app_assets.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 
@@ -52,11 +53,32 @@ class HomeScreen extends StatelessWidget {
                     onDateChange: (date) {},
                   ),
                 ],
-              )
+              ),
+              const SizedBox(height: 50.0),
+              noTasksWidget(context),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Column noTasksWidget(BuildContext context) {
+    return Column(
+      children: [
+        Image.asset(AppAssets.noTasks),
+        Text(
+          AppStrings.noTaskTitle,
+          style: Theme.of(context)
+              .textTheme
+              .displayMedium!
+              .copyWith(fontSize: 24.0),
+        ),
+        Text(
+          AppStrings.noTaskSubTitle,
+          style: Theme.of(context).textTheme.displayMedium!,
+        ),
+      ],
     );
   }
 }

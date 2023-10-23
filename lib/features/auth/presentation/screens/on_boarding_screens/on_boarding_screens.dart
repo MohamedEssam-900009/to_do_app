@@ -8,7 +8,7 @@ import 'package:to_do_app/core/utils/app_strings.dart';
 import 'package:to_do_app/core/widgets/custom_button.dart';
 import 'package:to_do_app/core/widgets/custom_text_button.dart';
 import 'package:to_do_app/features/auth/data/model/on_boarding_model.dart';
-import 'package:to_do_app/features/task/presentation/screens/home_screen.dart';
+import 'package:to_do_app/features/task/presentation/screens/home_screen/home_screen.dart';
 
 // ignore: must_be_immutable
 class OnBoardingScreens extends StatelessWidget {

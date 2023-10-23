@@ -1,10 +1,13 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_app/core/commons/commons.dart';
 import 'package:to_do_app/core/utils/app_assets.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 import 'package:to_do_app/core/widgets/custom_button.dart';
+
+import '../add_task_screen/add_task_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,7 +17,9 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            navigateTo(context: context, screen: const AddTaskScreen());
+          },
           backgroundColor: AppColors.primary,
           child: const Icon(Icons.add),
         ),
@@ -83,6 +88,7 @@ class HomeScreen extends StatelessWidget {
                               child: CustomButton(
                                 text: AppStrings.deleteTask,
                                 onPressed: () {},
+                                backgroundColor: AppColors.orange,
                               ),
                             ),
                             const SizedBox(height: 24.0),

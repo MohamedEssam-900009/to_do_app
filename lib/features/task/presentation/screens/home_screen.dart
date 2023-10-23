@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:to_do_app/core/utils/app_assets.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
+import 'package:to_do_app/core/widgets/custom_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -56,8 +57,51 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 50.0),
               // noTasksWidget(context),
-              const TaskComponent(),
-              const TaskComponent(),
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Container(
+                        padding: const EdgeInsets.all(24.0),
+                        height: 240,
+                        color: AppColors.deepGrey,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 48.0,
+                              width: double.infinity,
+                              child: CustomButton(
+                                text: AppStrings.taskCompleted,
+                                onPressed: () {},
+                              ),
+                            ),
+                            const SizedBox(height: 24.0),
+                            SizedBox(
+                              height: 48.0,
+                              width: double.infinity,
+                              child: CustomButton(
+                                text: AppStrings.deleteTask,
+                                onPressed: () {},
+                              ),
+                            ),
+                            const SizedBox(height: 24.0),
+                            SizedBox(
+                              height: 48.0,
+                              width: double.infinity,
+                              child: CustomButton(
+                                text: AppStrings.cancel,
+                                onPressed: () {},
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: const TaskComponent(),
+              ),
             ],
           ),
         ),

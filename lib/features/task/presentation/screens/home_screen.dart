@@ -55,7 +55,9 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 50.0),
-              noTasksWidget(context),
+              // noTasksWidget(context),
+              const TaskComponent(),
+              const TaskComponent(),
             ],
           ),
         ),
@@ -79,6 +81,81 @@ class HomeScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.displayMedium!,
         ),
       ],
+    );
+  }
+}
+
+class TaskComponent extends StatelessWidget {
+  const TaskComponent({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 132.0,
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.only(bottom: 24),
+      decoration: BoxDecoration(
+        color: AppColors.red,
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Task 1',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .copyWith(fontSize: 24.0),
+                ),
+                const SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Icon(
+                      Icons.timer,
+                      color: AppColors.white,
+                    ),
+                    const SizedBox(
+                      width: 8.0,
+                    ),
+                    Text(
+                      '09:33 PM - 09:48 PM',
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  'Learn Dart',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .copyWith(fontSize: 24.0),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 75.0,
+            width: 1.0,
+            color: AppColors.white,
+          ),
+          const SizedBox(width: 9.0),
+          RotatedBox(
+            quarterTurns: 3,
+            child: Text(
+              AppStrings.toDo,
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

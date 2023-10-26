@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            navigateTo(context: context, screen: const AddTaskScreen());
+            navigateTo(context: context, screen: AddTaskScreen());
           },
           backgroundColor: AppColors.primary,
           child: const Icon(Icons.add),
@@ -49,6 +49,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   DatePicker(
+                    //TODO: Need to fix the hieght for Date Picker 
                     DateTime.now(),
                     initialSelectedDate: DateTime.now(),
                     selectionColor: AppColors.primary,

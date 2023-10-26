@@ -39,6 +39,23 @@ ThemeData getAppTheme() {
         ),
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      enabledBorder: OutlineInputBorder(
+        //TODO: need to fix border radius
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        //TODO: need to fix border radius
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+      hintStyle: GoogleFonts.lato(
+        fontSize: 16.0,
+        fontWeight: FontWeight.w400,
+        color: AppColors.white,
+      ),
+      fillColor: AppColors.lightBlack,
+      filled: true,
+    ),
   );
 }
 

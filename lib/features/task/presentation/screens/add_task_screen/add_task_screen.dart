@@ -14,10 +14,11 @@ class AddTaskScreen extends StatefulWidget {
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
   TextEditingController titleController = TextEditingController();
-
   TextEditingController noteController = TextEditingController();
-
   DateTime currentDate = DateTime.now();
+  String startTime = DateFormat('hh:mm a').format(DateTime.now());
+  String endTime = DateFormat('hh:mm a')
+      .format(DateTime.now().add(const Duration(minutes: 45)));
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +75,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       // initialEntryMode: DatePickerEntryMode.inputOnly,
                     );
                     setState(() {
-                      currentDate = pickedDate!;
+                      if (pickedDate != null) {
+                        currentDate = pickedDate;
+                      } else {
+                        print('Picked == null');
+                      }
                     });
                   },
                   icon: const Icon(
@@ -82,6 +87,70 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     color: AppColors.white,
                   ),
                 ),
+              ),
+              const SizedBox(height: 24.0),
+              //! Start Time
+              Row(
+                children: [
+                  Expanded(
+                    child: AddTaskComponent(
+                      title: AppStrings.startTime,
+                      hintText: startTime,
+                      suffixIcon: IconButton(
+                        onPressed: () async {
+                          TimeOfDay? pickedStartTime = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.fromDateTime(currentDate),
+                          );
+                          if (pickedStartTime != null) {
+                            setState(() {
+                              startTime = pickedStartTime.format(context);
+                            });
+                          } else {
+                            print('Start Time == Null');
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.timer_outlined,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 27.0),
+                  //! End Time
+                  Expanded(
+                    child: AddTaskComponent(
+                      title: AppStrings.endTime,
+                      hintText: endTime,
+                      suffixIcon: IconButton(
+                        onPressed: () async {
+                          TimeOfDay? pickedStartTime = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.fromDateTime(currentDate),
+                          );
+                          if (pickedStartTime != null) {
+                            setState(() {
+                              startTime = pickedStartTime.format(context);
+                            });
+                          } else {
+                            print('Start Time == Null');
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.timer_outlined,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Expanded(
+                  //   child: AddTaskComponent(
+                  //     title: AppStrings.startTime,
+                  //     hintText: AppStrings.startTime,
+                  //   ),
+                  // ),
+                ],
               ),
             ],
           ),

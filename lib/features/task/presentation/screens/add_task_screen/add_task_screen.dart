@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
+import 'package:to_do_app/core/widgets/custom_button.dart';
 import 'package:to_do_app/features/task/components/add_task_component.dart';
 
 // ignore: must_be_immutable
@@ -144,13 +145,27 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       ),
                     ),
                   ),
-                  // Expanded(
-                  //   child: AddTaskComponent(
-                  //     title: AppStrings.startTime,
-                  //     hintText: AppStrings.startTime,
-                  //   ),
-                  // ),
                 ],
+              ),
+              //! Color
+              const SizedBox(height: 24.0),
+              Column(
+                children: [
+                  Text(
+                    AppStrings.color,
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                ],
+              ),
+              //! Add Task Button
+              const Spacer(),
+              SizedBox(
+                height: 48.0,
+                width: double.infinity,
+                child: CustomButton(
+                  text: AppStrings.createTask,
+                  onPressed: () {},
+                ),
               ),
             ],
           ),

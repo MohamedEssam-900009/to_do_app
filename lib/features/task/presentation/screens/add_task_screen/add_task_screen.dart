@@ -20,6 +20,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   String startTime = DateFormat('hh:mm a').format(DateTime.now());
   String endTime = DateFormat('hh:mm a')
       .format(DateTime.now().add(const Duration(minutes: 45)));
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +96,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 children: [
                   Expanded(
                     child: AddTaskComponent(
+                      readOnly: true,
                       title: AppStrings.startTime,
                       hintText: startTime,
                       suffixIcon: IconButton(
@@ -122,20 +124,21 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   //! End Time
                   Expanded(
                     child: AddTaskComponent(
+                      readOnly: true,
                       title: AppStrings.endTime,
                       hintText: endTime,
                       suffixIcon: IconButton(
                         onPressed: () async {
-                          TimeOfDay? pickedStartTime = await showTimePicker(
+                          TimeOfDay? pickEndTime = await showTimePicker(
                             context: context,
                             initialTime: TimeOfDay.fromDateTime(currentDate),
                           );
-                          if (pickedStartTime != null) {
+                          if (pickEndTime != null) {
                             setState(() {
-                              startTime = pickedStartTime.format(context);
+                              endTime = pickEndTime.format(context);
                             });
                           } else {
-                            print('Start Time == Null');
+                            print('End Time == Null');
                           }
                         },
                         icon: const Icon(
@@ -149,13 +152,60 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               //! Color
               const SizedBox(height: 24.0),
-              Column(
-                children: [
-                  Text(
-                    AppStrings.color,
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //Color
+                    Text(
+                      AppStrings.color,
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    const SizedBox(height: 8.0),
+                    Expanded(
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 6,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(width: 12.0),
+                        itemBuilder: (context, index) {
+                          Color getColor(index) {
+                            switch (index) {
+                              case 0:
+                                return AppColors.red;
+                              case 1:
+                                return AppColors.green;
+                              case 2:
+                                return AppColors.blueGrey;
+                              case 3:
+                                return AppColors.blue;
+                              case 4:
+                                return AppColors.orange;
+                              case 5:
+                                return AppColors.purple;
+                              default:
+                                return AppColors.grey;
+                            }
+                          }
+
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                currentIndex = index;
+                              });
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: getColor(index),
+                              child: index == currentIndex
+                                  ? const Icon(Icons.check)
+                                  : null,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
               //! Add Task Button
               const Spacer(),

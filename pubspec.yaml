@@ -9,10 +9,11 @@ environment:
   sdk: ">=3.0.6 <4.0.0"
 
 dependencies:
-  date_picker_timeline:
   cupertino_icons: ^1.0.2
+  date_picker_timeline: 
   flutter:
     sdk: flutter
+  flutter_screenutil: 
   get_it: 
   google_fonts: 
   intl: 

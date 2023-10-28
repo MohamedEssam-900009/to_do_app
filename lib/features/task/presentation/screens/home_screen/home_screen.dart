@@ -1,5 +1,6 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/core/commons/commons.dart';
 import 'package:to_do_app/core/utils/app_assets.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            navigateTo(context: context, screen: AddTaskScreen());
+            navigateTo(context: context, screen: const AddTaskScreen());
           },
           backgroundColor: AppColors.primary,
           child: const Icon(Icons.add),
@@ -33,23 +34,21 @@ class HomeScreen extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .displayLarge!
-                    .copyWith(fontSize: 24.0),
+                    .copyWith(fontSize: 24.0.sp),
               ),
-              const SizedBox(
-                height: 12.0,
-              ),
+              SizedBox(height: 12.0.h),
               Text(
                 AppStrings.today,
                 style: Theme.of(context)
                     .textTheme
                     .displayLarge!
-                    .copyWith(fontSize: 24.0),
+                    .copyWith(fontSize: 24.0.sp),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   DatePicker(
-                    //TODO: Need to fix the hieght for Date Picker 
+                    //TODO: Need to fix the hieght for Date Picker
                     DateTime.now(),
                     initialSelectedDate: DateTime.now(),
                     selectionColor: AppColors.primary,
@@ -61,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 50.0),
+              SizedBox(height: 50.0.h),
               // noTasksWidget(context),
               InkWell(
                 onTap: () {
@@ -70,21 +69,21 @@ class HomeScreen extends StatelessWidget {
                     builder: (context) {
                       return Container(
                         padding: const EdgeInsets.all(24.0),
-                        height: 240,
+                        height: 240.h,
                         color: AppColors.deepGrey,
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 48.0,
+                              height: 48.0.h,
                               width: double.infinity,
                               child: CustomButton(
                                 text: AppStrings.taskCompleted,
                                 onPressed: () {},
                               ),
                             ),
-                            const SizedBox(height: 24.0),
+                            SizedBox(height: 24.0.h),
                             SizedBox(
-                              height: 48.0,
+                              height: 48.0.h,
                               width: double.infinity,
                               child: CustomButton(
                                 text: AppStrings.deleteTask,
@@ -92,9 +91,9 @@ class HomeScreen extends StatelessWidget {
                                 backgroundColor: AppColors.orange,
                               ),
                             ),
-                            const SizedBox(height: 24.0),
+                            SizedBox(height: 24.0.h),
                             SizedBox(
-                              height: 48.0,
+                              height: 48.0.h,
                               width: double.infinity,
                               child: CustomButton(
                                 text: AppStrings.cancel,
@@ -125,7 +124,7 @@ class HomeScreen extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .displayMedium!
-              .copyWith(fontSize: 24.0),
+              .copyWith(fontSize: 24.0.sp),
         ),
         Text(
           AppStrings.noTaskSubTitle,
@@ -144,7 +143,7 @@ class TaskComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 132.0,
+      height: 132.0.h,
       padding: const EdgeInsets.all(8.0),
       margin: const EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
@@ -164,7 +163,7 @@ class TaskComponent extends StatelessWidget {
                       .displayLarge!
                       .copyWith(fontSize: 24.0),
                 ),
-                const SizedBox(height: 8.0),
+                SizedBox(height: 8.0.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -172,32 +171,30 @@ class TaskComponent extends StatelessWidget {
                       Icons.timer,
                       color: AppColors.white,
                     ),
-                    const SizedBox(
-                      width: 8.0,
-                    ),
+                    SizedBox(width: 8.0.w),
                     Text(
                       '09:33 PM - 09:48 PM',
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
                   ],
                 ),
-                const SizedBox(height: 8.0),
+                SizedBox(height: 8.0.h),
                 Text(
                   'Learn Dart',
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge!
-                      .copyWith(fontSize: 24.0),
+                      .copyWith(fontSize: 24.0.sp),
                 ),
               ],
             ),
           ),
           Container(
-            height: 75.0,
-            width: 1.0,
+            height: 75.0.h,
+            width: 1.0.w,
             color: AppColors.white,
           ),
-          const SizedBox(width: 9.0),
+          SizedBox(width: 9.0.w),
           RotatedBox(
             quarterTurns: 3,
             child: Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/app_colors.dart';
@@ -16,17 +17,17 @@ ThemeData getAppTheme() {
     //Text Theme
     textTheme: TextTheme(
       displayLarge: GoogleFonts.lato(
-        fontSize: 32.0,
+        fontSize: 32.0.sp,
         fontWeight: FontWeight.w700,
         color: AppColors.white,
       ),
       displayMedium: GoogleFonts.lato(
-        fontSize: 16.0,
+        fontSize: 16.0.sp,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
       displaySmall: GoogleFonts.lato(
-        fontSize: 16.0,
+        fontSize: 16.0.sp,
         color: AppColors.white.withOpacity(.44),
       ),
     ),
@@ -72,17 +73,17 @@ ThemeData getAppDarkTheme() {
     //Text Theme
     textTheme: TextTheme(
       displayLarge: GoogleFonts.lato(
-        fontSize: 32.0,
+        fontSize: 32.0.sp,
         fontWeight: FontWeight.w700,
         color: AppColors.white,
       ),
       displayMedium: GoogleFonts.lato(
-        fontSize: 16.0,
+        fontSize: 16.0.sp,
         fontWeight: FontWeight.w400,
         color: AppColors.white,
       ),
       displaySmall: GoogleFonts.lato(
-        fontSize: 16.0,
+        fontSize: 16.0.sp,
         color: AppColors.white.withOpacity(.44),
       ),
     ),

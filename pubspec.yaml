@@ -13,6 +13,7 @@ dependencies:
   date_picker_timeline: 
   flutter:
     sdk: flutter
+  flutter_bloc: 
   flutter_screenutil: 
   get_it: 
   google_fonts: 

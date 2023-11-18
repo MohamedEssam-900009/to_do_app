@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../../data/model/task_model.dart';
 import 'task_state.dart';
 
 class TaskCubit extends Cubit<TaskState> {
@@ -13,6 +14,10 @@ class TaskCubit extends Cubit<TaskState> {
   String endTime = DateFormat('hh:mm a')
       .format(DateTime.now().add(const Duration(minutes: 45)));
   int currentIndex = 0;
+
+  TextEditingController titleController = TextEditingController();
+  TextEditingController noteController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   //Get Date from User
   void getDate(BuildContext context) async {
     emit(GetDateLoadingState());
@@ -81,5 +86,32 @@ class TaskCubit extends Cubit<TaskState> {
   void changeCheckMarkIndex(int index) {
     currentIndex = index;
     emit(ChangeCheckMarkIndexState());
+  }
+
+  List<TaskModel> tasksList = [];
+
+  void insertTask() async {
+    emit(InsertTaskLoadingState());
+
+    try {
+      await Future.delayed(const Duration(seconds: 1));
+      tasksList.add(
+        TaskModel(
+          id: '1',
+          title: titleController.text,
+          note: noteController.text,
+          startTime: startTime,
+          endTime: endTime,
+          date: DateFormat.yMd().format(currentDate),
+          isCompleted: false,
+          color: currentIndex,
+        ),
+      );
+      titleController.clear();
+      noteController.clear();
+      emit(InsertTaskSuccessState());
+    } catch (e) {
+      emit(InsertTaskErrorState());
+    }
   }
 }

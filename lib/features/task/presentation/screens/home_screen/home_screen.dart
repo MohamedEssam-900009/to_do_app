@@ -1,5 +1,6 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/core/commons/commons.dart';
@@ -8,6 +9,8 @@ import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 import 'package:to_do_app/core/widgets/custom_button.dart';
 import 'package:to_do_app/features/task/data/model/task_model.dart';
+import 'package:to_do_app/features/task/presentation/cubit/task_cubit.dart';
+import 'package:to_do_app/features/task/presentation/cubit/task_state.dart';
 
 import '../add_task_screen/add_task_screen.dart';
 
@@ -27,101 +30,112 @@ class HomeScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                DateFormat.yMMMd().format(DateTime.now()),
-                style: Theme.of(context)
-                    .textTheme
-                    .displayLarge!
-                    .copyWith(fontSize: 24.0.sp),
-              ),
-              SizedBox(height: 12.0.h),
-              Text(
-                AppStrings.today,
-                style: Theme.of(context)
-                    .textTheme
-                    .displayLarge!
-                    .copyWith(fontSize: 24.0.sp),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  DatePicker(
-                    //TODO: Need to fix the height for Date Picker
-                    DateTime.now(),
-                    height: 110.h,
-                    //width: 327.w,
-                    initialSelectedDate: DateTime.now(),
-                    selectionColor: AppColors.primary,
-                    dayTextStyle: Theme.of(context).textTheme.displayMedium!,
-                    dateTextStyle: Theme.of(context).textTheme.displayMedium!,
-                    monthTextStyle: Theme.of(context).textTheme.displayMedium!,
-                    selectedTextColor: AppColors.white,
-                    onDateChange: (date) {},
+          child: BlocBuilder<TaskCubit, TaskState>(
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    DateFormat.yMMMd().format(DateTime.now()),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayLarge!
+                        .copyWith(fontSize: 24.0.sp),
                   ),
-                ],
-              ),
-              SizedBox(height: 50.0.h),
-              TaskModel.tasksList.isEmpty
-                  ? noTasksWidget(context)
-                  : Expanded(
-                      child: ListView.builder(
-                        itemCount: TaskModel.tasksList.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (context) {
-                                  return Container(
-                                    padding: const EdgeInsets.all(24.0),
-                                    height: 240.h,
-                                    color: AppColors.deepGrey,
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 48.0.h,
-                                          width: double.infinity,
-                                          child: CustomButton(
-                                            text: AppStrings.taskCompleted,
-                                            onPressed: () {},
-                                          ),
+                  SizedBox(height: 12.0.h),
+                  Text(
+                    AppStrings.today,
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayLarge!
+                        .copyWith(fontSize: 24.0.sp),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      DatePicker(
+                        //TODO: Need to fix the height for Date Picker
+                        DateTime.now(),
+                        height: 110.h,
+                        //width: 327.w,
+                        initialSelectedDate: DateTime.now(),
+                        selectionColor: AppColors.primary,
+                        dayTextStyle:
+                            Theme.of(context).textTheme.displayMedium!,
+                        dateTextStyle:
+                            Theme.of(context).textTheme.displayMedium!,
+                        monthTextStyle:
+                            Theme.of(context).textTheme.displayMedium!,
+                        selectedTextColor: AppColors.white,
+                        onDateChange: (date) {},
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 24.0.h),
+                  BlocProvider.of<TaskCubit>(context).tasksList.isEmpty
+                      ? noTasksWidget(context)
+                      : Expanded(
+                          child: ListView.builder(
+                            itemCount: BlocProvider.of<TaskCubit>(context)
+                                .tasksList
+                                .length,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Container(
+                                        padding: const EdgeInsets.all(24.0),
+                                        height: 240.h,
+                                        color: AppColors.deepGrey,
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 48.0.h,
+                                              width: double.infinity,
+                                              child: CustomButton(
+                                                text: AppStrings.taskCompleted,
+                                                onPressed: () {},
+                                              ),
+                                            ),
+                                            SizedBox(height: 24.0.h),
+                                            SizedBox(
+                                              height: 48.0.h,
+                                              width: double.infinity,
+                                              child: CustomButton(
+                                                text: AppStrings.deleteTask,
+                                                onPressed: () {},
+                                                backgroundColor:
+                                                    AppColors.orange,
+                                              ),
+                                            ),
+                                            SizedBox(height: 24.0.h),
+                                            SizedBox(
+                                              height: 48.0.h,
+                                              width: double.infinity,
+                                              child: CustomButton(
+                                                text: AppStrings.cancel,
+                                                onPressed: () {},
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        SizedBox(height: 24.0.h),
-                                        SizedBox(
-                                          height: 48.0.h,
-                                          width: double.infinity,
-                                          child: CustomButton(
-                                            text: AppStrings.deleteTask,
-                                            onPressed: () {},
-                                            backgroundColor: AppColors.orange,
-                                          ),
-                                        ),
-                                        SizedBox(height: 24.0.h),
-                                        SizedBox(
-                                          height: 48.0.h,
-                                          width: double.infinity,
-                                          child: CustomButton(
-                                            text: AppStrings.cancel,
-                                            onPressed: () {},
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      );
+                                    },
                                   );
                                 },
+                                child: TaskComponent(
+                                  taskModel: BlocProvider.of<TaskCubit>(context)
+                                      .tasksList[index],
+                                ),
                               );
                             },
-                            child: TaskComponent(
-                              taskModel: TaskModel.tasksList[index],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-            ],
+                          ),
+                        ),
+                ],
+              );
+            },
           ),
         ),
       ),

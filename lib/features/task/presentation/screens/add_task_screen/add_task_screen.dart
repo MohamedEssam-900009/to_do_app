@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_app/core/commons/commons.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 import 'package:to_do_app/core/widgets/custom_button.dart';
@@ -9,7 +10,6 @@ import 'package:to_do_app/features/task/presentation/components/add_task_compone
 import 'package:to_do_app/features/task/presentation/cubit/task_cubit.dart';
 import 'package:to_do_app/features/task/presentation/cubit/task_state.dart';
 
-// ignore: must_be_immutable
 class AddTaskScreen extends StatelessWidget {
   const AddTaskScreen({super.key});
 
@@ -37,6 +37,10 @@ class AddTaskScreen extends StatelessWidget {
           child: BlocConsumer<TaskCubit, TaskState>(
             listener: (context, state) {
               if (state is InsertTaskSuccessState) {
+                showToast(
+                  message: 'Added Successfully',
+                  toastState: ToastState.success,
+                );
                 Navigator.pop(context);
               }
             },

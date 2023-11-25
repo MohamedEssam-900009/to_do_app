@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:to_do_app/core/commons/commons.dart';
-import 'package:to_do_app/core/database/cache_helper.dart';
+import 'package:to_do_app/core/database/cache/cache_helper.dart';
 import 'package:to_do_app/core/services/service_locator.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';

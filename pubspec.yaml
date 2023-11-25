@@ -21,6 +21,7 @@ dependencies:
   intl: 
   shared_preferences: 
   smooth_page_indicator: 
+  sqflite: 
 
 dev_dependencies:
   flutter_lints: ^2.0.0

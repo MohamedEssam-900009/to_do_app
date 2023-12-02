@@ -1,10 +1,11 @@
 import 'package:get_it/get_it.dart';
-import 'package:to_do_app/core/database/cache/cache_helper.dart';
-import 'package:to_do_app/core/database/sqflite_helper/sqflite_helper.dart';
+import '../database/cache/cache_helper.dart';
 
-final serviceLocator = GetIt.instance;
+import '../database/sqflite_helper/sqflite_helper.dart';
 
-Future<void> setup() async {
-  serviceLocator.registerLazySingleton<CacheHelper>(() => CacheHelper());
-  serviceLocator.registerLazySingleton<SqfliteHelper>(() => SqfliteHelper());
+final sl = GetIt.instance;
+Future<void> setup()async {
+sl.registerLazySingleton<CacheHelper>(()=>CacheHelper());  
+sl.registerLazySingleton<SqfliteHelper>(()=>SqfliteHelper());  
+
 }

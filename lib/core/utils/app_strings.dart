@@ -3,13 +3,13 @@ class AppStrings {
   static const String skip = 'Skip';
   static const String next = 'Next';
   static const String back = 'Back';
-  static const String getStarted = 'GET STARTED';
+  static const String getStarted = 'Get Started';
   static const String onBoardingTitleOne = 'Manage your tasks';
   static const String onBoardingSubTitleOne =
-      'You can easily manage all of your daily task in DoMe for free';
+      'You can easily manage all of your daily tasks in DoMe for free';
   static const String onBoardingTitleTwo = 'Create daily routine';
   static const String onBoardingSubTitleTwo =
-      'In UpTodo you can create your personalized routine to stay productive';
+      'In Uptodo  you can create your personalized routine to stay productive';
   static const String onBoardingTitleThree = 'Organize your tasks';
   static const String onBoardingSubTitleThree =
       'You can organize your daily tasks by adding your tasks into separate categories';
@@ -25,13 +25,13 @@ class AppStrings {
   static const String startTime = 'Start Time';
   static const String endTime = 'End Time';
   static const String color = 'Color';
-  static const String createTask = 'CREATE TASK';
+  static const String createTask = 'Create task';
   static const String toDo = 'TODO';
   static const String completed = 'COMPLETED';
-  static const String taskCompleted = 'TASK COMPLETED';
-  static const String deleteTask = 'DELETE TASK';
-  static const String cancel = 'CANCEL';
+  static const String taskCompleted = 'Task Completed';
+  static const String deleteTask = 'Delete Task';
+  static const String cancel = 'Cancel';
   static const String onBoardingKey = 'onBoarding';
-  static const String titleErrorMsg = 'Enter valid Title';
-  static const String noteErrorMsg = 'Enter valid Note';
+  static const String noteErrorMsg = 'Enter Valid Note';
+  static const String titleErrorMsg = 'Enter Valid title';
 }

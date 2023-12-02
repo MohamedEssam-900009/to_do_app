@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_app/core/commons/commons.dart';
-import 'package:to_do_app/core/utils/app_colors.dart';
-import 'package:to_do_app/core/utils/app_strings.dart';
-import 'package:to_do_app/core/widgets/custom_button.dart';
-import 'package:to_do_app/features/task/presentation/components/add_task_component.dart';
-import 'package:to_do_app/features/task/presentation/cubit/task_cubit.dart';
-import 'package:to_do_app/features/task/presentation/cubit/task_state.dart';
+
+import '../../../../../core/commons/commons.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_strings.dart';
+import '../../../../../core/widgets/custom_button.dart';
+import '../../components/add_task_component.dart';
+import '../../cubit/task_cubit.dart';
+import '../../cubit/task_state.dart';
 
 class AddTaskScreen extends StatelessWidget {
   const AddTaskScreen({super.key});
@@ -19,13 +20,13 @@ class AddTaskScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0.0,
+        centerTitle: false,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back_ios_outlined),
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
-        centerTitle: false,
         title: Text(
           AppStrings.addTask,
           style: Theme.of(context).textTheme.displayLarge,
@@ -33,78 +34,75 @@ class AddTaskScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24),
           child: BlocConsumer<TaskCubit, TaskState>(
             listener: (context, state) {
               if (state is InsertTaskSuccessState) {
                 showToast(
-                  message: 'Added Successfully',
-                  toastState: ToastState.success,
-                );
+                    message: 'Added Successfully', state: ToastStates.success);
                 Navigator.pop(context);
               }
             },
             builder: (context, state) {
               final cubit = BlocProvider.of<TaskCubit>(context);
-
               return Form(
-                key: cubit.formKey,
+                key: BlocProvider.of<TaskCubit>(context).formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //! Title
                     AddTaskComponent(
+                      controller:
+                          BlocProvider.of<TaskCubit>(context).titleController,
                       title: AppStrings.title,
                       hintText: AppStrings.titleHint,
-                      controller: cubit.titleController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
+                      validator: (val) {
+                        if (val!.isEmpty) {
                           return AppStrings.titleErrorMsg;
                         }
                         return null;
                       },
                     ),
-                    SizedBox(height: 24.0.h),
-                    //! Note
+                    SizedBox(height: 24.h),
                     AddTaskComponent(
+                      controller:
+                          BlocProvider.of<TaskCubit>(context).noteController,
                       title: AppStrings.note,
                       hintText: AppStrings.noteHint,
-                      controller: cubit.noteController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
+                      validator: (val) {
+                        if (val!.isEmpty) {
                           return AppStrings.noteErrorMsg;
                         }
                         return null;
                       },
                     ),
-                    SizedBox(height: 24.0.h),
-                    //! Date
+                    SizedBox(height: 24.h),
                     AddTaskComponent(
                       title: AppStrings.date,
                       hintText: DateFormat.yMd().format(cubit.currentDate),
-                      readOnly: true,
                       suffixIcon: IconButton(
                         onPressed: () async {
-                          cubit.getDate(context);
+                          BlocProvider.of<TaskCubit>(context).getDate(context);
                         },
                         icon: const Icon(
                           Icons.calendar_month_rounded,
                           color: AppColors.white,
                         ),
                       ),
+                      readOnly: true,
                     ),
-                    SizedBox(height: 24.0.h),
-                    //! Start Time
+                    SizedBox(height: 24.h),
                     Row(
                       children: [
                         Expanded(
                           child: AddTaskComponent(
                             readOnly: true,
                             title: AppStrings.startTime,
-                            hintText: cubit.startTime,
+                            hintText:
+                                BlocProvider.of<TaskCubit>(context).startTime,
                             suffixIcon: IconButton(
                               onPressed: () async {
-                                cubit.getStartTime(context);
+                                BlocProvider.of<TaskCubit>(context)
+                                    .getStartTime(context);
                               },
                               icon: const Icon(
                                 Icons.timer_outlined,
@@ -113,16 +111,17 @@ class AddTaskScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(width: 27.0.w),
-                        //! End Time
+                        const SizedBox(width: 26),
                         Expanded(
                           child: AddTaskComponent(
                             readOnly: true,
                             title: AppStrings.endTime,
-                            hintText: cubit.endTime,
+                            hintText:
+                                BlocProvider.of<TaskCubit>(context).endTime,
                             suffixIcon: IconButton(
                               onPressed: () async {
-                                cubit.getEndTime(context);
+                                BlocProvider.of<TaskCubit>(context)
+                                    .getEndTime(context);
                               },
                               icon: const Icon(
                                 Icons.timer_outlined,
@@ -133,33 +132,35 @@ class AddTaskScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    //! Color
-                    SizedBox(height: 24.0.h),
+                    SizedBox(height: 24.h),
                     SizedBox(
-                      height: 68.0.h,
+                      height: 68.h,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          //Color
                           Text(
                             AppStrings.color,
                             style: Theme.of(context).textTheme.displayMedium,
                           ),
-                          SizedBox(height: 8.0.h),
                           Expanded(
                             child: ListView.separated(
                               scrollDirection: Axis.horizontal,
                               itemCount: 6,
                               separatorBuilder: (context, index) =>
-                                  SizedBox(width: 12.0.w),
+                                  SizedBox(width: 8.w),
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    cubit.changeCheckMarkIndex(index);
+                                    BlocProvider.of<TaskCubit>(context)
+                                        .changeCheckMarkIndex(index);
                                   },
                                   child: CircleAvatar(
-                                    backgroundColor: cubit.getColor(index),
-                                    child: index == cubit.currentIndex
+                                    backgroundColor:
+                                        BlocProvider.of<TaskCubit>(context)
+                                            .getColor(index),
+                                    child: index ==
+                                            BlocProvider.of<TaskCubit>(context)
+                                                .currentIndex
                                         ? const Icon(Icons.check)
                                         : null,
                                   ),
@@ -170,8 +171,7 @@ class AddTaskScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    //! Add Task Button
-                    SizedBox(height: 92.0.h),
+                    SizedBox(height: 90.h),
                     state is InsertTaskLoadingState
                         ? const Center(
                             child: CircularProgressIndicator(
@@ -179,17 +179,21 @@ class AddTaskScreen extends StatelessWidget {
                             ),
                           )
                         : SizedBox(
-                            height: 48.0.h,
+                            height: 48.h,
                             width: double.infinity,
                             child: CustomButton(
                               text: AppStrings.createTask,
                               onPressed: () {
-                                if (cubit.formKey.currentState!.validate()) {
-                                  cubit.insertTask();
+                                if (BlocProvider.of<TaskCubit>(context)
+                                    .formKey
+                                    .currentState!
+                                    .validate()) {
+                                  BlocProvider.of<TaskCubit>(context)
+                                      .insertTask();
                                 }
                               },
                             ),
-                          ),
+                          )
                   ],
                 ),
               );

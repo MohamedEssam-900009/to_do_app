@@ -9,9 +9,8 @@ class AddTaskComponent extends StatelessWidget {
     this.controller,
     this.suffixIcon,
     this.readOnly = false,
-    this.validator
+    this.validator,
   });
-
   final String title;
   final String hintText;
   final TextEditingController? controller;
@@ -28,12 +27,13 @@ class AddTaskComponent extends StatelessWidget {
           title,
           style: Theme.of(context).textTheme.displayMedium,
         ),
-        SizedBox(height: 8.0.h),
+        SizedBox(height: 8.h),
         TextFormField(
           readOnly: readOnly,
           controller: controller,
           validator: validator,
           decoration: InputDecoration(
+            //hint
             hintText: hintText,
             suffixIcon: suffixIcon,
           ),

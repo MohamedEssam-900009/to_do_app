@@ -62,7 +62,7 @@ class AddTaskScreen extends StatelessWidget {
                         return null;
                       },
                     ),
-                    SizedBox(height: 24.h),
+                    SizedBox(height: 24.0.h),
                     AddTaskComponent(
                       controller:
                           BlocProvider.of<TaskCubit>(context).noteController,
@@ -75,7 +75,7 @@ class AddTaskScreen extends StatelessWidget {
                         return null;
                       },
                     ),
-                    SizedBox(height: 24.h),
+                    SizedBox(height: 24.0.h),
                     AddTaskComponent(
                       title: AppStrings.date,
                       hintText: DateFormat.yMd().format(cubit.currentDate),
@@ -90,7 +90,7 @@ class AddTaskScreen extends StatelessWidget {
                       ),
                       readOnly: true,
                     ),
-                    SizedBox(height: 24.h),
+                    SizedBox(height: 24.0.h),
                     Row(
                       children: [
                         Expanded(
@@ -111,7 +111,7 @@ class AddTaskScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 26),
+                        SizedBox(width: 26.0.w),
                         Expanded(
                           child: AddTaskComponent(
                             readOnly: true,
@@ -132,9 +132,9 @@ class AddTaskScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 24.h),
+                    SizedBox(height: 24.0.h),
                     SizedBox(
-                      height: 68.h,
+                      height: 68.0.h,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -147,7 +147,7 @@ class AddTaskScreen extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               itemCount: 6,
                               separatorBuilder: (context, index) =>
-                                  SizedBox(width: 8.w),
+                                  SizedBox(width: 8.0.w),
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
@@ -171,7 +171,7 @@ class AddTaskScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 90.h),
+                    SizedBox(height: 90.0.h),
                     state is InsertTaskLoadingState
                         ? const Center(
                             child: CircularProgressIndicator(
@@ -179,7 +179,7 @@ class AddTaskScreen extends StatelessWidget {
                             ),
                           )
                         : SizedBox(
-                            height: 48.h,
+                            height: 48.0.h,
                             width: double.infinity,
                             child: CustomButton(
                               text: AppStrings.createTask,

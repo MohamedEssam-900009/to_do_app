@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/database/cache/cache_helper.dart';
 import '../../../../../core/services/service_locator.dart';
@@ -40,20 +41,21 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(AppAssets.logo),
-          const SizedBox(height: 24),
-          Text(
-            AppStrings.appName,
-            style: Theme.of(context)
-                .textTheme
-                .displayLarge!
-                .copyWith(fontSize: 40),
-          )
-        ],
-      )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(AppAssets.logo),
+            SizedBox(height: 24.0.h),
+            Text(
+              AppStrings.appName,
+              style: Theme.of(context)
+                  .textTheme
+                  .displayLarge!
+                  .copyWith(fontSize: 40),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

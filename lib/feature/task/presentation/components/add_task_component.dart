@@ -27,7 +27,7 @@ class AddTaskComponent extends StatelessWidget {
           title,
           style: Theme.of(context).textTheme.displayMedium,
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: 8.0.h),
         TextFormField(
           readOnly: readOnly,
           controller: controller,

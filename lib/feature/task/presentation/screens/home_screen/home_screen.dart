@@ -1,6 +1,7 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../core/commons/commons.dart';
@@ -45,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.0.h),
                   Text(AppStrings.today,
                       style: Theme.of(context).textTheme.displayLarge),
                   DatePicker(
@@ -56,11 +57,12 @@ class HomeScreen extends StatelessWidget {
                     dateTextStyle: Theme.of(context).textTheme.displayMedium!,
                     dayTextStyle: Theme.of(context).textTheme.displayMedium!,
                     monthTextStyle: Theme.of(context).textTheme.displayMedium!,
+                    height: 110.0.h,
                     onDateChange: (date) {
                       BlocProvider.of<TaskCubit>(context).getSelectedDate(date);
                     },
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.0.h),
                   BlocProvider.of<TaskCubit>(context).tasksList.isEmpty
                       ? noTasksWidget(context)
                       : Expanded(
@@ -76,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                                       builder: (context) {
                                         return Container(
                                           padding: const EdgeInsets.all(24),
-                                          height: 240,
+                                          height: 240.0.h,
                                           color: AppColors.deepGrey,
                                           child: Column(
                                             children: [
@@ -87,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                                                       1
                                                   ? Container()
                                                   : SizedBox(
-                                                      height: 48,
+                                                      height: 48.0.h,
                                                       width: double.infinity,
                                                       child: CustomButton(
                                                         text: AppStrings
@@ -107,11 +109,9 @@ class HomeScreen extends StatelessWidget {
                                                         },
                                                       ),
                                                     ),
-                                              const SizedBox(
-                                                height: 24,
-                                              ),
+                                              SizedBox(height: 24.0.h),
                                               SizedBox(
-                                                height: 48,
+                                                height: 48.0.h,
                                                 width: double.infinity,
                                                 child: CustomButton(
                                                   text: AppStrings.deleteTask,
@@ -129,9 +129,7 @@ class HomeScreen extends StatelessWidget {
                                                   },
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                height: 24,
-                                              ),
+                                              SizedBox(height: 24.0.h),
                                               SizedBox(
                                                 height: 48,
                                                 width: double.infinity,
@@ -178,9 +176,8 @@ class HomeScreen extends StatelessWidget {
         Image.asset(AppAssets.noTasks),
         Text(
           AppStrings.noTaskTitle,
-          style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                fontSize: 24,
-              ),
+          style:
+              Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 24),
         ),
         Text(
           AppStrings.noTaskSubTitle,
@@ -219,7 +216,7 @@ class TaskComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 132,
+      height: 132.0.h,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: getColor(taskModel.color),
@@ -236,7 +233,7 @@ class TaskComponent extends StatelessWidget {
                   taskModel.title,
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.0.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -260,7 +257,7 @@ class TaskComponent extends StatelessWidget {
             ),
           ),
           Container(
-            height: 75,
+            height: 75.0.h,
             width: 1,
             color: Colors.white,
             margin: const EdgeInsets.only(right: 10),

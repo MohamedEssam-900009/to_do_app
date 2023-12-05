@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+
 import '../../../../core/database/cache/cache_helper.dart';
 import '../../../../core/database/sqflite_helper/sqflite_helper.dart';
-import 'task_state.dart';
-
 import '../../../../core/services/service_locator.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../data/model/task_model.dart';
+import 'task_state.dart';
 
 class TaskCubit extends Cubit<TaskState> {
   TaskCubit() : super(TaskInitial());
@@ -35,7 +35,6 @@ class TaskCubit extends Cubit<TaskState> {
       currentDate = pickedDate;
       emit(GetDateSuccessState());
     } else {
-      print('pickedDate == null');
       emit(GetDateErrorState());
     }
   }
@@ -51,7 +50,6 @@ class TaskCubit extends Cubit<TaskState> {
       startTime = pickedStartTime.format(context);
       emit(GetStartTimeSuccessState());
     } else {
-      print('pickedStartTime ==null');
       emit(GetStartTimeErrorState());
     }
   }
@@ -67,7 +65,6 @@ class TaskCubit extends Cubit<TaskState> {
       endTime = pickedEndTime.format(context);
       emit(GetEndTimeSuccessState());
     } else {
-      print('pickedStartTime ==null');
       emit(GetEndTimeErrorState());
     }
   }
@@ -142,7 +139,6 @@ class TaskCubit extends Cubit<TaskState> {
           .toList();
       emit(GetDateSuccessState());
     }).catchError((e) {
-      print(e.toString());
       emit(GetDateErrorState());
     });
   }
@@ -154,7 +150,6 @@ class TaskCubit extends Cubit<TaskState> {
       emit(UpdateTaskSuccessState());
       getTasks();
     }).catchError((e) {
-      print(e.toString());
       emit(UpdateTaskErrorState());
     });
   }
@@ -166,7 +161,6 @@ class TaskCubit extends Cubit<TaskState> {
       emit(DeleteTaskSuccessState());
       getTasks();
     }).catchError((e) {
-      print(e.toString());
       emit(DeleteTaskErrorState());
     });
   }

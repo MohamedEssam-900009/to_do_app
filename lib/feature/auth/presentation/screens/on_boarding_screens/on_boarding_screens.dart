@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../../core/commons/commons.dart';
@@ -11,6 +12,7 @@ import '../../../../../core/widgets/custom_text_button.dart';
 import '../../../../task/presentation/screens/home_screen/home_screen.dart';
 import '../../../data/model/on_boarding_model.dart';
 
+// ignore: must_be_immutable
 class OnBoardingScreens extends StatelessWidget {
   OnBoardingScreens({super.key});
   PageController controller = PageController();
@@ -36,33 +38,31 @@ class OnBoardingScreens extends StatelessWidget {
                           },
                         ),
                       )
-                    : const SizedBox(height: 50),
-                const SizedBox(height: 16),
+                    : SizedBox(height: 50.0.h),
+                SizedBox(height: 16.0.h),
                 Image.asset(OnBoardingModel.onBoardingScreens[index].imgPath),
-                const SizedBox(height: 16),
+                SizedBox(height: 16.0.h),
                 SmoothPageIndicator(
                   controller: controller,
                   count: 3,
-                  effect: const ExpandingDotsEffect(
+                  effect: ExpandingDotsEffect(
                     activeDotColor: AppColors.primary,
-                    dotHeight: 10,
+                    dotHeight: 10.0.h,
                     spacing: 8,
                   ),
                 ),
-                const SizedBox(
-                  height: 52,
-                ),
+                SizedBox(height: 52.0.h),
                 Text(
                   OnBoardingModel.onBoardingScreens[index].title,
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
-                const SizedBox(height: 42),
+                SizedBox(height: 42.0.h),
                 Text(
                   OnBoardingModel.onBoardingScreens[index].subTitle,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
-                const SizedBox(height: 50),
+                SizedBox(height: 50.0.h),
                 Row(
                   children: [
                     index != 0

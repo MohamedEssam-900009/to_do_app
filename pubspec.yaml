@@ -10,23 +10,31 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
-  date_picker_timeline: 
+  date_picker_timeline:
   flutter:
     sdk: flutter
-  flutter_bloc: 
-  flutter_screenutil: 
-  fluttertoast: 
-  get_it: 
-  google_fonts: 
-  intl: 
-  shared_preferences: 
-  smooth_page_indicator: 
-  sqflite: 
+  flutter_bloc:
+  flutter_screenutil:
+  fluttertoast:
+  get_it:
+  google_fonts:
+  intl:
+  shared_preferences:
+  smooth_page_indicator:
+  sqflite:
 
 dev_dependencies:
+  change_app_package_name: 
+  flutter_launcher_icons:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  rename_app: 
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
 
 flutter:
   uses-material-design: true

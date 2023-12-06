@@ -1,16 +1,9 @@
-# to_do_app
+# Description  
+UpTodo is a simple and intelligent to-do list that helps you manage all your tasks in one place
 
-A new Flutter project.
+## Light Theme
+![Full Presentation for UpTodo App (Light Theme)](https://github.com/MohamedEssam-900009/to_do_app/assets/77198018/7ca20076-0ce0-42ab-8843-965ab52f715c)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Dark Theme
+![Full Presentation for UpTodo App (Dark Theme)](https://github.com/MohamedEssam-900009/to_do_app/assets/77198018/a9f95598-5dd4-4ee4-be8e-231058efd894)

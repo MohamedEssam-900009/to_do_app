@@ -1,6 +1,6 @@
 # UptoDo App
 
-This is a simple todo app built with Flutter. It allows users to create, update, and delete tasks to manage their daily activities.
+This is a simple to-do app built with Flutter. It allows users to create, update, and delete tasks to manage their daily activities.
 
 ## Features
 
@@ -10,10 +10,10 @@ This is a simple todo app built with Flutter. It allows users to create, update,
 - **Filtering**: Ability to filter tasks by status (completed, active) or search by keyword.
 - **Responsive Design**: The app is responsive and works well on both Android and iOS devices.
 
-## Tech Stack
+## OverView
 
-- Flutter
-- Dart
+![309825034-0f267f9e-d2a3-41c6-8a4b-17a0b12abd6d](https://github.com/MohamedEssam9009/UpTodo/assets/77198018/5729856c-a4bb-42bd-b74c-25070bff1a8c)
+
 
 ## Installation
 
@@ -23,26 +23,4 @@ This is a simple todo app built with Flutter. It allows users to create, update,
 4. Run `flutter pub get` to install dependencies.
 5. Connect a device or start an emulator.
 6. Run `flutter run` to start the app on your device or emulator.
-
-## Usage
-
-1. Once the app is running on your device or emulator, you'll see the todo app interface.
-2. Use the provided input fields and buttons to add, update, or delete tasks.
-3. Explore different features like filtering and searching to manage your tasks efficiently.
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
-
-## License
-
-[insert license here, e.g., MIT License]
-
-## Acknowledgements
-
-[mention any acknowledgements, e.g., credit any third-party libraries or resources used]
-
-## Contact
-
-For any inquiries or feedback, please contact [mohamed.essam900009@gmail.com].
 
